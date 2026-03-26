@@ -1,0 +1,18 @@
+from openai import OpenAI
+
+client = OpenAI(api_key="TA_CLE_API")
+
+print("IA prête ! Tape 'stop' pour quitter.")
+
+while True:
+    question = input("Toi : ")
+
+    if question.lower() == "stop":
+        break
+
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": question}]
+    )
+
+    print("IA :", response.choices[0].message.content)
